@@ -16,12 +16,13 @@
 .nameDateInput,
 .hltInput,
 .mvcInput,
-.diftelInput,
+.diftelInput1,
+.diftelInput2,
 .kaliumInput {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	margin: 1.5em 0;
+	margin: 0.5em 0 1em 0;
 	max-width: 100%;
 }
 
@@ -31,12 +32,10 @@
 
 .hltInput > div,
 .mvcInput > div,
-.kaliumInput > div {
+.kaliumInput > div,
+.diftelInput1 > div,
+.diftelInput2 > div {
 	width: 32%;
-}
-
-.diftelInput > div {
-	width: 15%;
 }
 
 .inputContainer {
@@ -45,8 +44,7 @@
 }
 
 .label {
-	font-size: 16px;
-	font-weight: bold;
+	font-size: 14px;
 	color: #333;
 }
 
@@ -54,4 +52,12 @@
 	border: 2px solid #ccc;
 	border-radius: 5px;
 	padding: 1em;
+}
+
+.title {
+	font-size: 24px;
+	font-weight: bold;
+	color: #333;
+	margin: 0;
+	text-decoration: underline;
 }

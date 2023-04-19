@@ -27,6 +27,7 @@ function App() {
 		<div className={styles.container}>
 			<div className={styles.form}>
 				<form>
+					<span className={styles.title}>Nama dan Tanggal</span>
 					<div className={styles.nameDateInput}>
 						<Input
 							label="Nama"
@@ -35,9 +36,6 @@ function App() {
 							onChange={(e) => setName(e.target.value)}
 						/>
 						<div key="date" className={styles.inputContainer}>
-							<label className={styles.label} htmlFor="date">
-								<strong>Tanggal</strong>
-							</label>
 							<input
 								type="date"
 								name="date"
@@ -49,6 +47,7 @@ function App() {
 							/>
 						</div>
 					</div>
+					<span className={styles.title}>H/L/T</span>
 					<div className={styles.hltInput}>
 						<Input
 							label="Hemoglobin"
@@ -69,6 +68,7 @@ function App() {
 							onChange={(e) => setTrombosit(e.target.value)}
 						/>
 					</div>
+					<span className={styles.title}>Mcv/Mch/Mchc</span>
 					<div className={styles.mvcInput}>
 						<Input label="MVC" name="mvc" value={mvc} onChange={(e) => setMVC(e.target.value)} />
 						<Input label="MCH" name="mch" value={mch} onChange={(e) => setMCH(e.target.value)} />
@@ -79,7 +79,8 @@ function App() {
 							onChange={(e) => setMCHC(e.target.value)}
 						/>
 					</div>
-					<div className={styles.diftelInput}>
+					<span className={styles.title}>Diftel</span>
+					<div className={styles.diftelInput1}>
 						<Input
 							label="Neutrofit"
 							name="neutrofit"
@@ -98,6 +99,8 @@ function App() {
 							value={monosit}
 							onChange={(e) => setMonosit(e.target.value)}
 						/>
+					</div>
+					<div className={styles.diftelInput2}>
 						<Input
 							label="Eosinofil"
 							name="eosinofil"
@@ -117,6 +120,7 @@ function App() {
 							onChange={(e) => setStab(e.target.value)}
 						/>
 					</div>
+					<span className={styles.title}>K/Na/Cl</span>
 					<div className={styles.kaliumInput}>
 						<Input
 							label="Kalium"
