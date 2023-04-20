@@ -57,6 +57,8 @@ function App() {
 		isUseUrCr: false,
 	});
 
+	const [finalResult, setFinalResult] = useState('');
+
 	const plusMinusOptions = [
 		{ value: '-', label: '-' },
 		{ value: '+', label: '+' },
@@ -65,8 +67,6 @@ function App() {
 		{ value: 'Non Reaktif', label: 'Non Reaktif' },
 		{ value: 'Reaktif', label: 'Reaktif' },
 	];
-
-	console.log(dataForm);
 
 	const dispatch = useDispatch();
 	const data = useSelector((state) => state.lab);
@@ -417,23 +417,53 @@ function App() {
 							<Input
 								label="Cr"
 								name="cr"
-								value={dataForm.cr}
-								onChange={(e) => setDataForm({ ...dataForm, cr: e.target.value })}
+								value={dataForm.cryarn}
+								onChange={(e) => setDataForm({ ...dataForm, cryarn: e.target.value })}
 							/>
 						</div>
 					</div>
 				</form>
-				<div className={styles.controller}>
-					{data.value.map((data) => {
-						return (
-							<div className={styles.dataContainer} key={data.id}>
-								<div className={styles.cardData}>
-									<span className={styles.cardDataName}>{data.name}</span>
-									<span className={styles.cardDataDate}>{data.date}</span>
-								</div>
-							</div>
-						);
-					})}
+				<div className={styles.finalResultContainer}>
+					<div className={styles.finalTitleSection}>
+						<span className={styles.titleFinal}>Hasil Akhir</span>
+						<div className={styles.copyAll}>
+							<button
+								className={styles.buttonCopyAll}
+								onClick={() => {
+									const result = data.value
+										.map((item) => {
+											return displayData(item);
+										})
+										.join('\n');
+									navigator.clipboard
+										.writeText(result)
+										.then(() => {
+											toast.success(`Semuanya berhasil di-copy :))`, {
+												position: toast.POSITION.TOP_CENTER,
+											});
+										})
+										.catch(() => {
+											toast.error(`Belum terkopi :((`, {
+												position: toast.POSITION.TOP_CENTER,
+											});
+										});
+								}}
+							>
+								<FontAwesomeIcon icon={faCopy} className={styles.icon} />
+								Copy Semua
+							</button>
+						</div>
+					</div>
+					<div className={styles.finalResult}>
+						{data.value.map((item, index) => {
+							return (
+								<>
+									{displayHTMLData(item)}
+									{index + 1 != data.value.length && <br></br>}
+								</>
+							);
+						})}
+					</div>
 				</div>
 			</div>
 			<div className={styles.result}>
@@ -442,6 +472,7 @@ function App() {
 						<button
 							className={styles.button}
 							onClick={() => {
+								setDataForm(DEFAULT_LEB_TEST_DATA);
 								dispatch(addTest(dataForm));
 							}}
 						>
@@ -464,7 +495,7 @@ function App() {
 								navigator.clipboard
 									.writeText(result)
 									.then(() => {
-										toast.success(`Copied :))`, {
+										toast.success(`Lab ${dataForm.name} berhasil di-copy :))`, {
 											position: toast.POSITION.TOP_CENTER,
 										});
 									})
