@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './Input.module.css';
 
-export default function Input({ onChange, label, value, name }) {
+export default function Input({ isText, onChange, label, value, name }) {
 	return (
 		<div key={name} className={styles.inputContainer}>
 			<input
-				type="text"
+				type={isText ? 'text' : 'number'}
 				name={name}
 				onChange={onChange}
 				value={value}

@@ -2,26 +2,36 @@ import React, { useState, useEffect } from 'react';
 import styles from './Home.module.css';
 import Input from './Input';
 import moment from 'moment';
+import { useDispatch, useSelector } from 'react-redux';
+import { addTest } from '../redux/actions/labActions';
+import { displayData, displayHTMLData } from '../utilities/util';
+import { DEFAULT_LEB_TEST_DATA } from '../constants';
 import 'react-datetime/css/react-datetime.css';
 
 function App() {
-	const [name, setName] = useState('');
-	const [date, setDate] = useState(moment().format('YYYY-MM-DD'));
-	const [hemoglobin, setHemoglobin] = useState('');
-	const [leukosit, setLeukosit] = useState('');
-	const [trombosit, setTrombosit] = useState('');
-	const [mvc, setMVC] = useState('');
-	const [mch, setMCH] = useState('');
-	const [mchc, setMCHC] = useState('');
-	const [neutrofit, setNeutrofit] = useState('');
-	const [limfosit, setLimfosit] = useState('');
-	const [monosit, setMonosit] = useState('');
-	const [eosinofil, setEosinofil] = useState('');
-	const [basofil, setBasofil] = useState('');
-	const [stab, setStab] = useState('');
-	const [kalium, setKalium] = useState('');
-	const [natrium, setNatrium] = useState('');
-	const [klorida, setKlorida] = useState('');
+	const [dataForm, setDataForm] = useState({
+		name: '',
+		date: moment().format('YYYY-MM-DD'),
+		hemoglobin: '',
+		leukosit: '',
+		trombosit: '',
+		mvc: '',
+		mch: '',
+		mchc: '',
+		neutrofit: '',
+		limfosit: '',
+		monosit: '',
+		eosinofil: '',
+		basofil: '',
+		stab: '',
+		kalium: '',
+		natrium: '',
+		klorida: '',
+	});
+
+	const dispatch = useDispatch();
+	const data = useSelector((state) => state.lab);
+	console.log(data);
 
 	return (
 		<div className={styles.container}>
@@ -31,18 +41,17 @@ function App() {
 					<div className={styles.nameDateInput}>
 						<Input
 							label="Nama"
+							isText
 							name="name"
-							value={name}
-							onChange={(e) => setName(e.target.value)}
+							value={dataForm.name}
+							onChange={(e) => setDataForm({ ...dataForm, name: e.target.value })}
 						/>
 						<div key="date" className={styles.inputContainer}>
 							<input
 								type="date"
 								name="date"
-								onChange={(e) => {
-									setDate(e.target.value);
-								}}
-								value={date}
+								onChange={(e) => setDataForm({ ...dataForm, date: e.target.value })}
+								value={dataForm.date}
 								className={styles.input}
 							/>
 						</div>
@@ -52,31 +61,41 @@ function App() {
 						<Input
 							label="Hemoglobin"
 							name="hemoglobin"
-							value={hemoglobin}
-							onChange={(e) => setHemoglobin(e.target.value)}
+							value={dataForm.hemoglobin}
+							onChange={(e) => setDataForm({ ...dataForm, hemoglobin: e.target.value })}
 						/>
 						<Input
 							label="Leukosit"
 							name="leukosit"
-							value={leukosit}
-							onChange={(e) => setLeukosit(e.target.value)}
+							value={dataForm.leukosit}
+							onChange={(e) => setDataForm({ ...dataForm, leukosit: e.target.value })}
 						/>
 						<Input
 							label="Trombosit"
 							name="trombosit"
-							value={trombosit}
-							onChange={(e) => setTrombosit(e.target.value)}
+							value={dataForm.trombosit}
+							onChange={(e) => setDataForm({ ...dataForm, trombosit: e.target.value })}
 						/>
 					</div>
 					<span className={styles.title}>Mcv/Mch/Mchc</span>
 					<div className={styles.mvcInput}>
-						<Input label="MVC" name="mvc" value={mvc} onChange={(e) => setMVC(e.target.value)} />
-						<Input label="MCH" name="mch" value={mch} onChange={(e) => setMCH(e.target.value)} />
+						<Input
+							label="MVC"
+							name="mvc"
+							value={dataForm.mvc}
+							onChange={(e) => setDataForm({ ...dataForm, mvc: e.target.value })}
+						/>
+						<Input
+							label="MCH"
+							name="mch"
+							value={dataForm.mch}
+							onChange={(e) => setDataForm({ ...dataForm, mch: e.target.value })}
+						/>
 						<Input
 							label="MCHC"
 							name="mchc"
-							value={mchc}
-							onChange={(e) => setMCHC(e.target.value)}
+							value={dataForm.mchc}
+							onChange={(e) => setDataForm({ ...dataForm, mchc: e.target.value })}
 						/>
 					</div>
 					<span className={styles.title}>Diftel</span>
@@ -84,40 +103,40 @@ function App() {
 						<Input
 							label="Neutrofit"
 							name="neutrofit"
-							value={neutrofit}
-							onChange={(e) => setNeutrofit(e.target.value)}
+							value={dataForm.neutrofit}
+							onChange={(e) => setDataForm({ ...dataForm, neutrofit: e.target.value })}
 						/>
 						<Input
 							label="Limfosit"
 							name="limfosit"
-							value={limfosit}
-							onChange={(e) => setLimfosit(e.target.value)}
+							value={dataForm.limfosit}
+							onChange={(e) => setDataForm({ ...dataForm, limfosit: e.target.value })}
 						/>
 						<Input
 							label="Monosit"
 							name="monosit"
-							value={monosit}
-							onChange={(e) => setMonosit(e.target.value)}
+							value={dataForm.monosit}
+							onChange={(e) => setDataForm({ ...dataForm, monosit: e.target.value })}
 						/>
 					</div>
 					<div className={styles.diftelInput2}>
 						<Input
 							label="Eosinofil"
 							name="eosinofil"
-							value={eosinofil}
-							onChange={(e) => setEosinofil(e.target.value)}
+							value={dataForm.eosinofil}
+							onChange={(e) => setDataForm({ ...dataForm, eosinofil: e.target.value })}
 						/>
 						<Input
 							label="Basofil"
 							name="basofil"
-							value={basofil}
-							onChange={(e) => setBasofil(e.target.value)}
+							value={dataForm.basofil}
+							onChange={(e) => setDataForm({ ...dataForm, basofil: e.target.value })}
 						/>
 						<Input
 							label="Stab"
 							name="stab"
-							value={stab}
-							onChange={(e) => setStab(e.target.value)}
+							value={dataForm.stab}
+							onChange={(e) => setDataForm({ ...dataForm, stab: e.target.value })}
 						/>
 					</div>
 					<span className={styles.title}>K/Na/Cl</span>
@@ -125,25 +144,59 @@ function App() {
 						<Input
 							label="Kalium"
 							name="kalium"
-							value={kalium}
-							onChange={(e) => setKalium(e.target.value)}
+							value={dataForm.kalium}
+							onChange={(e) => setDataForm({ ...dataForm, kalium: e.target.value })}
 						/>
 						<Input
 							label="Natrium"
 							name="natrium"
-							value={natrium}
-							onChange={(e) => setNatrium(e.target.value)}
+							value={dataForm.natrium}
+							onChange={(e) => setDataForm({ ...dataForm, natrium: e.target.value })}
 						/>
 						<Input
 							label="Klorida"
 							name="klorida"
-							value={klorida}
-							onChange={(e) => setKlorida(e.target.value)}
+							value={dataForm.klorida}
+							onChange={(e) => setDataForm({ ...dataForm, klorida: e.target.value })}
 						/>
 					</div>
 				</form>
+				<div className={styles.controller}>
+					{data.value.map((data) => {
+						return (
+							<div className={styles.dataContainer} key={data.id}>
+								<div className={styles.cardData}>
+									<span className={styles.cardDataName}>{data.name}</span>
+									<span className={styles.cardDataDate}>{data.date}</span>
+								</div>
+							</div>
+						);
+					})}
+				</div>
 			</div>
-			<div className={styles.result}></div>
+			<div className={styles.result}>
+				<div className={styles.resultContainer}>
+					<div className={styles.buttonSection}>
+						<button
+							className={styles.button}
+							onClick={() => {
+								dispatch(addTest(dataForm));
+							}}
+						>
+							+ Tambah
+						</button>
+						<button
+							className={styles.buttonHapus}
+							onClick={() => {
+								setDataForm(DEFAULT_LEB_TEST_DATA);
+							}}
+						>
+							- Hapus Semua
+						</button>
+					</div>
+					{displayHTMLData(dataForm)}
+				</div>
+			</div>
 		</div>
 	);
 }

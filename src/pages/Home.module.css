@@ -1,7 +1,9 @@
 .container {
 	display: flex;
 	flex-direction: row;
+	justify-content: space-between;
 	width: 100%;
+	height: 100%;
 }
 
 .form {
@@ -10,7 +12,21 @@
 }
 
 .result {
-	width: 40%;
+	right: 0;
+	position: fixed;
+	width: 35%;
+	height: 100%;
+}
+
+.resultContainer {
+	word-break: break-all;
+	position: relative;
+	margin: 2em;
+	padding: 1em;
+	border-radius: 5px;
+	height: -webkit-fill-available;
+	background-color: white;
+	border: 2px solid #ccc;
 }
 
 .nameDateInput,
@@ -60,4 +76,65 @@
 	color: #333;
 	margin: 0;
 	text-decoration: underline;
+}
+
+.button,
+.buttonHapus {
+	background-color: black;
+	border: 2px solid black;
+	color: white;
+	padding: 0.5em 1em;
+	text-align: center;
+	border-radius: 5px;
+	font-size: 16px;
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+}
+
+.button:hover {
+	background-color: white;
+	color: black;
+}
+
+.buttonHapus {
+	margin-top: 1em;
+	background-color: rgb(176, 42, 42);
+	border: 2px solid rgb(176, 42, 42);
+}
+
+.buttonHapus:hover {
+	background-color: white;
+	color: rgb(176, 42, 42);
+}
+
+.buttonSection {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 1em;
+}
+
+.controller {
+	padding: 1em;
+	background-color: white;
+	border: 2px solid #ccc;
+	border-radius: 5px;
+	height: fit-content;
+}
+
+.dataContainer {
+	background-color: #ccc;
+	border-radius: 5px;
+	padding: 1em;
+	transition: all 0.2s ease-in-out;
+	cursor: pointer;
+	margin-bottom: 0.5em;
+}
+
+.dataContainer:hover {
+	background-color: #000000;
+	color: white;
+}
+
+.cardDataName {
+	margin-right: 0.5em;
 }
