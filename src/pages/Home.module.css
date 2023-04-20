@@ -79,7 +79,8 @@
 }
 
 .button,
-.buttonHapus {
+.buttonHapus,
+.buttonCopy {
 	background-color: black;
 	border: 2px solid black;
 	color: white;
@@ -98,13 +99,25 @@
 
 .buttonHapus {
 	margin-top: 1em;
-	background-color: rgb(176, 42, 42);
-	border: 2px solid rgb(176, 42, 42);
+	background-color: #ff4136;
+	border: 2px solid #ff4136;
+	color: white;
+	margin-bottom: 1em;
 }
 
 .buttonHapus:hover {
-	background-color: white;
-	color: rgb(176, 42, 42);
+	background-color: #d30f0f;
+	border: 2px solid #d30f0f;
+}
+
+.buttonCopy {
+	background-color: #0074d9;
+	border: 2px solid #0074d9;
+	color: white;
+}
+
+.buttonCopy:hover {
+	background-color: #0050a3;
 }
 
 .buttonSection {
@@ -136,5 +149,11 @@
 }
 
 .cardDataName {
+	margin-right: 0.5em;
+}
+
+.icon {
+	width: 20px;
+	height: 20px;
 	margin-right: 0.5em;
 }

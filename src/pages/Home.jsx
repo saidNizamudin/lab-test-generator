@@ -6,7 +6,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addTest } from '../redux/actions/labActions';
 import { displayData, displayHTMLData } from '../utilities/util';
 import { DEFAULT_LEB_TEST_DATA } from '../constants';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ToastContainer, toast } from 'react-toastify';
+import { faCopy } from '@fortawesome/free-solid-svg-icons';
+
 import 'react-datetime/css/react-datetime.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 	const [dataForm, setDataForm] = useState({
@@ -18,12 +23,12 @@ function App() {
 		mvc: '',
 		mch: '',
 		mchc: '',
-		neutrofit: '',
-		limfosit: '',
-		monosit: '',
 		eosinofil: '',
 		basofil: '',
-		stab: '',
+		nbatang: '',
+		nsegmen: '',
+		limfosit: '',
+		monosit: '',
 		kalium: '',
 		natrium: '',
 		klorida: '',
@@ -101,26 +106,6 @@ function App() {
 					<span className={styles.title}>Diftel</span>
 					<div className={styles.diftelInput1}>
 						<Input
-							label="Neutrofit"
-							name="neutrofit"
-							value={dataForm.neutrofit}
-							onChange={(e) => setDataForm({ ...dataForm, neutrofit: e.target.value })}
-						/>
-						<Input
-							label="Limfosit"
-							name="limfosit"
-							value={dataForm.limfosit}
-							onChange={(e) => setDataForm({ ...dataForm, limfosit: e.target.value })}
-						/>
-						<Input
-							label="Monosit"
-							name="monosit"
-							value={dataForm.monosit}
-							onChange={(e) => setDataForm({ ...dataForm, monosit: e.target.value })}
-						/>
-					</div>
-					<div className={styles.diftelInput2}>
-						<Input
 							label="Eosinofil"
 							name="eosinofil"
 							value={dataForm.eosinofil}
@@ -133,10 +118,30 @@ function App() {
 							onChange={(e) => setDataForm({ ...dataForm, basofil: e.target.value })}
 						/>
 						<Input
-							label="Stab"
-							name="stab"
-							value={dataForm.stab}
-							onChange={(e) => setDataForm({ ...dataForm, stab: e.target.value })}
+							label="Netrofil Batang"
+							name="nbatang"
+							value={dataForm.nbatang}
+							onChange={(e) => setDataForm({ ...dataForm, nbatang: e.target.value })}
+						/>
+					</div>
+					<div className={styles.diftelInput2}>
+						<Input
+							label="Netrofil Segmen"
+							name="nsegmen"
+							value={dataForm.nsegmen}
+							onChange={(e) => setDataForm({ ...dataForm, nsegmen: e.target.value })}
+						/>
+						<Input
+							label="Limfosit"
+							name="limfosit"
+							value={dataForm.limfosit}
+							onChange={(e) => setDataForm({ ...dataForm, limfosit: e.target.value })}
+						/>
+						<Input
+							label="Monosit"
+							name="monosit"
+							value={dataForm.monosit}
+							onChange={(e) => setDataForm({ ...dataForm, monosit: e.target.value })}
 						/>
 					</div>
 					<span className={styles.title}>K/Na/Cl</span>
@@ -193,10 +198,32 @@ function App() {
 						>
 							- Hapus Semua
 						</button>
+						<button
+							className={styles.buttonCopy}
+							onClick={() => {
+								const result = displayData(dataForm);
+								navigator.clipboard
+									.writeText(result)
+									.then(() => {
+										toast.success(`Copied :))`, {
+											position: toast.POSITION.TOP_CENTER,
+										});
+									})
+									.catch(() => {
+										toast.error(`Belum terkopi :((`, {
+											position: toast.POSITION.TOP_CENTER,
+										});
+									});
+							}}
+						>
+							<FontAwesomeIcon icon={faCopy} className={styles.icon} />
+							Copy
+						</button>
 					</div>
 					{displayHTMLData(dataForm)}
 				</div>
 			</div>
+			<ToastContainer />
 		</div>
 	);
 }
