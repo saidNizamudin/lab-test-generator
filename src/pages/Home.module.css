@@ -34,7 +34,15 @@
 .mvcInput,
 .diftelInput1,
 .diftelInput2,
-.kaliumInput {
+.kaliumInput,
+.antiDengueInput,
+.antiHCVInput,
+.bhsagInput,
+.bilInput,
+.sgotInput,
+.albuminInput,
+.gdsInput,
+.urCrInput {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -46,11 +54,25 @@
 	width: 48%;
 }
 
+.antiDengueInput > div,
+.sgotInput > div,
+.urCrInput > div {
+	width: 48%;
+}
+
+.antiHCVInput > div,
+.bhsagInput > div,
+.albuminInput > div,
+.gdsInput > div {
+	width: 100%;
+}
+
 .hltInput > div,
 .mvcInput > div,
 .kaliumInput > div,
 .diftelInput1 > div,
-.diftelInput2 > div {
+.diftelInput2 > div,
+.bilInput > div {
 	width: 32%;
 }
 
@@ -59,7 +81,8 @@
 	flex-direction: column;
 }
 
-.label {
+.label,
+.select > div > div {
 	font-size: 14px;
 	color: #333;
 }
@@ -70,12 +93,33 @@
 	padding: 1em;
 }
 
+.select > div {
+	border: 2px solid #ccc;
+	border-radius: 5px;
+	padding: 0.3em;
+}
+
 .title {
 	font-size: 24px;
 	font-weight: bold;
 	color: #333;
 	margin: 0;
 	text-decoration: underline;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.notUsedTitle {
+	font-size: 24px;
+	color: #b0b0b0;
+	margin: 0;
+	text-decoration: line-through;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .button,
@@ -90,6 +134,9 @@
 	font-size: 16px;
 	cursor: pointer;
 	transition: all 0.2s ease-in-out;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .button:hover {
