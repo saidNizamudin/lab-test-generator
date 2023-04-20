@@ -512,6 +512,9 @@ function App() {
 					</div>
 					{displayHTMLData(dataForm)}
 				</div>
+				<div className={styles.copyright}>
+					<span>&copy; All rights reserved | Designed with love by DungDung</span>
+				</div>
 			</div>
 
 			<ToastContainer />

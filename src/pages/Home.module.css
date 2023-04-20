@@ -32,7 +32,8 @@
 	flex-direction: column;
 }
 
-.resultContainer {
+.resultContainer,
+.copyright {
 	word-break: break-all;
 	position: relative;
 	margin: 2em;
@@ -42,6 +43,13 @@
 	background-color: white;
 	border: 2px solid #ccc;
 	overflow-y: auto;
+}
+
+.copyright {
+	font-weight: bold;
+	margin-top: 0;
+	padding: 0.5em;
+	font-size: 14px;
 }
 
 .copyAll {
