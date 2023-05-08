@@ -80,7 +80,6 @@ function App() {
 						<div className={styles.nameDateInput}>
 							<Input
 								label="Nama"
-								isText
 								name="name"
 								value={dataForm.name}
 								onChange={(e) => setDataForm({ ...dataForm, name: e.target.value })}
@@ -417,8 +416,8 @@ function App() {
 							<Input
 								label="Cr"
 								name="cr"
-								value={dataForm.cryarn}
-								onChange={(e) => setDataForm({ ...dataForm, cryarn: e.target.value })}
+								value={dataForm.cr}
+								onChange={(e) => setDataForm({ ...dataForm, cr: e.target.value })}
 							/>
 						</div>
 					</div>
