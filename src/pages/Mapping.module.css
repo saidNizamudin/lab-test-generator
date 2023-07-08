@@ -1,0 +1,245 @@
+.container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+	height: 100%;
+	background-color: #82b14c5d;
+}
+
+.form {
+	width: 60%;
+	padding: 2em;
+	height: fit-content;
+}
+
+.finalResultContainer {
+	margin-top: 2em;
+}
+
+.finalResult {
+	padding: 1em;
+	background-color: white;
+	border: 2px solid #ccc;
+	border-radius: 5px;
+}
+
+.result {
+	right: 0;
+	position: fixed;
+	width: 35%;
+	height: fit-content;
+	display: flex;
+	flex-direction: column;
+}
+
+.resultContainer,
+.copyright {
+	word-break: break-all;
+	position: relative;
+	margin: 2em;
+	padding: 1em;
+	border-radius: 5px;
+	height: -webkit-fill-available;
+	background-color: white;
+	border: 2px solid #5e8e3e;
+	overflow-y: auto;
+	width: -webkit-fill-available;
+}
+
+.copyright {
+	font-weight: 400;
+	margin-top: 0;
+	padding: 0.5em;
+	font-size: 14px;
+}
+
+.copyAll {
+	display: flex;
+	align-items: center;
+	margin-left: 2em;
+}
+
+.nameDateInput,
+.hltInput,
+.mvcInput,
+.diftelInput1,
+.diftelInput2,
+.kaliumInput,
+.antiDengueInput,
+.antiHCVInput,
+.bhsagInput,
+.bilInput,
+.sgotInput,
+.albuminInput,
+.gdsInput,
+.urCrInput {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin: 0.5em 0 1em 0;
+	max-width: 100%;
+}
+
+.nameDateInput > div {
+	width: 48%;
+}
+
+.antiDengueInput > div,
+.sgotInput > div,
+.urCrInput > div {
+	width: 48%;
+}
+
+.antiHCVInput > div,
+.bhsagInput > div,
+.albuminInput > div,
+.gdsInput > div {
+	width: 100%;
+}
+
+.hltInput > div,
+.mvcInput > div,
+.kaliumInput > div,
+.diftelInput1 > div,
+.diftelInput2 > div,
+.bilInput > div {
+	width: 32%;
+}
+
+.inputContainer {
+	display: flex;
+	flex-direction: column;
+}
+
+.label,
+.select > div > div {
+	font-size: 14px;
+	color: #333;
+}
+
+.input {
+	border: 2px solid #ccc;
+	border-radius: 5px;
+	padding: 1em;
+}
+
+.select > div {
+	border: 2px solid #ccc;
+	border-radius: 5px;
+	padding: 0.3em;
+}
+
+.title {
+	font-size: 20px;
+	font-weight: 600;
+	color: #333;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.titleFinal {
+	font-size: 30px;
+	font-weight: 600;
+	color: black;
+	margin: 0;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.notUsedTitle {
+	font-size: 20px;
+	color: #b0b0b0;
+	font-weight: 600;
+	margin: 0;
+	text-decoration: line-through;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.button,
+.buttonHapus,
+.buttonCopy,
+.buttonCopyAll {
+	height: 100%;
+	background-color: #82b14c;
+	border: 2px solid #82b14c;
+	color: white;
+	padding: 0.5em;
+	text-align: center;
+	border-radius: 5px;
+	font-size: 16px;
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	outline: none;
+}
+
+.button:hover {
+	background-color: #5e8e3e;
+	border: 2px solid #5e8e3e;
+}
+
+.buttonHapus {
+	background-color: #d30f0f;
+	border: 2px solid #d30f0f;
+	color: white;
+}
+
+.buttonHapus:hover {
+	background-color: #a00a0a;
+	border: 2px solid #a00a0a;
+}
+
+.buttonCopy,
+.buttonCopyAll {
+	background-color: #0050a3;
+	border: 2px solid #0050a3;
+	color: white;
+}
+
+.buttonCopy:hover,
+.buttonCopyAll:hover {
+	background-color: #003a6b;
+	border: 2px solid #003a6b;
+}
+
+.buttonSection {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 1em;
+	margin-bottom: 1em;
+}
+
+.controller {
+	padding: 1em;
+	background-color: white;
+	border: 2px solid #5e8e3e;
+	border-radius: 5px;
+	height: fit-content;
+}
+
+.cardDataName {
+	margin-right: 0.5em;
+}
+
+.icon {
+	width: 20px;
+	height: 20px;
+	margin-right: 0.5em;
+}
+
+.finalTitleSection {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-bottom: 1em;
+}
