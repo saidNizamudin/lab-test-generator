@@ -2,62 +2,76 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	width: -webkit-fill-available;
-	padding: 0em 1em;
+	flex-wrap: wrap;
+	gap: 0.65rem 1rem;
+	padding: 0.85rem 1.5rem;
 	position: sticky;
 	top: 0;
-	z-index: 1;
-	background-color: #82b14c8e;
-	backdrop-filter: blur(10px);
+	z-index: 20;
+	background: rgba(246, 243, 238, 0.84);
+	backdrop-filter: blur(14px);
+	border-bottom: 1px solid var(--line);
+}
+
+.brand {
+	display: flex;
+	align-items: center;
+	gap: 0.65rem;
+	text-decoration: none;
+	color: var(--ink);
+	min-width: 0;
 }
 
 .navLogo {
-	width: 5em;
-	cursor: pointer;
+	width: 32px;
+	height: 32px;
+	flex: none;
+}
+
+.brandName {
+	font-family: 'Fraunces', Georgia, serif;
+	font-weight: 500;
+	font-size: 1.05rem;
+	letter-spacing: -0.02em;
 }
 
 .navItemContainer {
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
-	gap: 3em;
+	gap: 0.25rem;
 }
 
 .navItem {
-	display: inline-block;
-	position: relative;
-	color: black;
-	font-size: 20px;
+	color: var(--muted);
+	font-size: 0.95rem;
+	font-weight: 500;
 	text-decoration: none;
-	transition: all 0.3s ease-in-out;
-	outline: none;
+	padding: 0.4rem 0.85rem;
+	border-radius: 999px;
+	transition: color 0.2s ease, background 0.2s ease;
 }
 
-.navItem:after {
-	content: '';
-	position: absolute;
-	width: 100%;
-	transform: scaleX(0);
-	height: 2px;
-	bottom: 0;
-	left: 0;
-	background-color: black;
-	transform-origin: bottom right;
-	transition: transform 0.25s ease-out;
+.navItem:hover {
+	color: var(--ink);
+	background: rgba(44, 40, 36, 0.05);
 }
 
-.navItem:hover:after {
-	transform: scaleX(1);
-	transform-origin: bottom left;
+.active {
+	color: var(--accent);
+	background: rgba(61, 107, 88, 0.12);
 }
 
-.navItemComingSoon {
-	display: inline-block;
-	position: relative;
-	color: black;
-	font-size: 20px;
-	text-decoration: none;
-	transition: all 0.3s ease-in-out;
-	outline: none;
-	opacity: 0.5;
+@media (max-width: 520px) {
+	.navContainer {
+		padding: 0.7rem 0.85rem;
+	}
+
+	.brandName {
+		font-size: 0.98rem;
+	}
+
+	.navItem {
+		padding: 0.4rem 0.65rem;
+		font-size: 0.88rem;
+	}
 }

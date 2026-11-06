@@ -1,68 +1,112 @@
 .container {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	flex: 1;
+	display: flex;
+	align-items: center;
 	width: 100%;
 }
 
 .wrapper {
 	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
 	align-items: center;
-	padding: 5em;
-}
-
-.logo {
-	width: 500px;
+	justify-content: space-between;
+	gap: 3.5rem;
+	width: min(1040px, calc(100% - 3rem));
+	margin: 0 auto;
+	padding: 3.5rem 0 2.5rem;
 }
 
 .homeTitleDesc {
 	display: flex;
 	flex-direction: column;
-	gap: 0;
-	width: 60%;
+	align-items: flex-start;
+	max-width: 34rem;
+}
+
+.kicker {
+	margin: 0 0 0.85rem;
+	color: var(--accent);
+	font-size: 0.78rem;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
 }
 
 .homeTitle {
-	color: #82b14c;
-	font-size: 50px;
-	font-weight: 300;
+	margin: 0;
+	font-family: 'Fraunces', Georgia, serif;
+	font-weight: 500;
+	font-size: clamp(2.5rem, 5vw, 3.75rem);
+	line-height: 1.08;
+	letter-spacing: -0.03em;
+	color: var(--ink);
 }
 
 .homeDescription {
-	color: #4e6b2d;
-	font-size: 18px;
-	font-weight: 300;
+	margin: 1.1rem 0 0;
+	color: #5c564f;
+	font-size: 1.05rem;
+	font-weight: 400;
+	line-height: 1.65;
 }
 
 .homeButton {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	color: #82b14c;
-	background-color: transparent;
-	text-transform: uppercase;
-	font-size: 16px;
-	font-weight: 700;
-	padding: 1em;
-	border-radius: 8px;
-	border: 2px solid #82b14c;
-	transition: all 0.3s ease-in-out;
+	margin-top: 1.6rem;
+	background: var(--accent);
+	color: #fffcf8;
+	border: none;
+	border-radius: 999px;
+	padding: 0.85rem 1.35rem;
+	font-size: 0.95rem;
+	font-weight: 500;
 	cursor: pointer;
-	outline: none;
-	width: fit-content;
-	margin-top: 1em;
-}
-
-.homeButtonIcon {
-	width: 16px;
-	height: 16px;
-	margin-right: 0.5em;
+	transition: background 0.2s ease;
 }
 
 .homeButton:hover {
-	color: white;
-	background-color: #82b14c;
+	background: var(--accent-deep);
+}
+
+.markWrap {
+	width: min(300px, 38vw);
+	aspect-ratio: 1;
+	flex: none;
+	border-radius: 36px;
+	background: radial-gradient(circle at 30% 28%, #ffffff, transparent 52%),
+		linear-gradient(160deg, #e7f0ea, #f3ebe3);
+	border: 1px solid var(--line);
+	display: grid;
+	place-items: center;
+}
+
+.logo {
+	width: 42%;
+	height: auto;
+}
+
+@media (max-width: 800px) {
+	.wrapper {
+		flex-direction: column-reverse;
+		align-items: flex-start;
+		gap: 1.5rem;
+		width: min(1040px, calc(100% - 1.5rem));
+		padding: 1.75rem 0 2rem;
+	}
+
+	.homeTitleDesc {
+		max-width: none;
+	}
+
+	.homeDescription {
+		font-size: 1rem;
+	}
+
+	.homeButton {
+		width: 100%;
+		text-align: center;
+	}
+
+	.markWrap {
+		width: 96px;
+		border-radius: 24px;
+	}
 }

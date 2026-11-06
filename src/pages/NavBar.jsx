@@ -1,20 +1,31 @@
+import { NavLink } from 'react-router-dom';
 import styles from './NavBar.module.css';
+
+const links = [
+	{ to: '/', label: 'Home', end: true },
+	{ to: '/mapping', label: 'Mapping' },
+];
 
 export default function NavBar() {
 	return (
-		<div className={styles.navContainer}>
-			<img src="/helper.svg" alt="Helper" className={styles.navLogo} />
-			<div className={styles.navItemContainer}>
-				<a href="/" className={styles.navItem}>
-					Home
-				</a>
-				<a href="/mapping" className={styles.navItem}>
-					Mapping
-				</a>
-				<a href="" className={styles.navItemComingSoon}>
-					More Feature Coming Soon
-				</a>
-			</div>
-		</div>
+		<header className={styles.navContainer}>
+			<NavLink to="/" className={styles.brand} end>
+				<img src="/mark.svg" alt="" className={styles.navLogo} />
+				<span className={styles.brandName}>Lab Helper</span>
+			</NavLink>
+			<nav className={styles.navItemContainer}>
+				{links.map((link) => (
+					<NavLink
+						key={link.to}
+						to={link.to}
+						end={link.end}
+						className={({ isActive }) =>
+							isActive ? `${styles.navItem} ${styles.active}` : styles.navItem
+						}>
+						{link.label}
+					</NavLink>
+				))}
+			</nav>
+		</header>
 	);
 }

@@ -2,7 +2,7 @@ import { HeartSwitch } from '@anatoliygatt/heart-switch';
 import { faCopy, faPlusCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import moment from 'moment';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import { ToastContainer, toast } from 'react-toastify';
@@ -58,6 +58,8 @@ function Mapping() {
 	});
 
 	const [finalResult, setFinalResult] = useState('');
+	const [resultOpen, setResultOpen] = useState(false);
+	const closeRef = useRef(null);
 
 	const plusMinusOptions = [
 		{ value: '-', label: '-' },
@@ -70,6 +72,26 @@ function Mapping() {
 
 	const dispatch = useDispatch();
 	const data = useSelector((state) => state.lab);
+
+	useEffect(() => {
+		document.body.classList.add('hasResultDock');
+		return () => document.body.classList.remove('hasResultDock');
+	}, []);
+
+	useEffect(() => {
+		if (!resultOpen) return undefined;
+		const onKey = (event) => {
+			if (event.key === 'Escape') setResultOpen(false);
+		};
+		document.addEventListener('keydown', onKey);
+		const previousOverflow = document.body.style.overflow;
+		document.body.style.overflow = 'hidden';
+		closeRef.current?.focus();
+		return () => {
+			document.removeEventListener('keydown', onKey);
+			document.body.style.overflow = previousOverflow;
+		};
+	}, [resultOpen]);
 
 	return (
 		<div className={styles.container}>
@@ -422,92 +444,133 @@ function Mapping() {
 						</div>
 					</div>
 				</form>
-				<div className={styles.finalResultContainer}>
-					<div className={styles.finalTitleSection}>
-						<span className={styles.titleFinal}>Hasil Akhir</span>
-						<div className={styles.copyAll}>
+			</div>
+			<div className={resultOpen ? `${styles.dock} ${styles.dockHidden}` : styles.dock}>
+				<div className={styles.dockSummary}>
+					<span className={styles.dockKicker}>Hasil</span>
+					<span className={styles.dockName}>{dataForm.name || 'Belum ada nama'}</span>
+				</div>
+				<button className={styles.dockButton} type="button" onClick={() => setResultOpen(true)}>
+					Lihat hasil
+					{data.value.length > 0 && <span className={styles.badge}>{data.value.length}</span>}
+				</button>
+			</div>
+			{resultOpen && (
+				<div className={styles.backdrop} onClick={() => setResultOpen(false)}>
+					<div
+						className={styles.sheet}
+						role="dialog"
+						aria-modal="true"
+						aria-labelledby="result-title"
+						onClick={(event) => event.stopPropagation()}>
+						<div className={styles.sheetHeader}>
+							<div>
+								<p className={styles.sheetKicker}>Catatan lab</p>
+								<h2 id="result-title" className={styles.sheetTitle}>
+									{dataForm.name || 'Belum ada nama'}
+								</h2>
+							</div>
 							<button
-								className={styles.buttonCopyAll}
-								onClick={() => {
-									const result = data.value
-										.map((item) => {
-											return displayData(item);
-										})
-										.join('\n');
-									navigator.clipboard
-										.writeText(result)
-										.then(() => {
-											toast.success(`Semuanya berhasil di-copy :))`, {
-												position: toast.POSITION.TOP_CENTER,
-											});
-										})
-										.catch(() => {
-											toast.error(`Belum terkopi :((`, {
-												position: toast.POSITION.TOP_CENTER,
-											});
-										});
-								}}>
-								<FontAwesomeIcon icon={faCopy} className={styles.icon} />
-								Copy Semua
+								ref={closeRef}
+								type="button"
+								className={styles.closeButton}
+								onClick={() => setResultOpen(false)}>
+								Tutup
 							</button>
 						</div>
-					</div>
-					<div className={styles.finalResult}>
-						{data.value.map((item, index) => {
-							return (
-								<>
-									{displayHTMLData(item)}
-									{index + 1 != data.value.length && <br></br>}
-								</>
-							);
-						})}
+						<div className={styles.resultContainer}>
+							<div className={styles.buttonSection}>
+								<button
+									className={styles.button}
+									type="button"
+									onClick={() => {
+										setDataForm(DEFAULT_LEB_TEST_DATA);
+										dispatch(addTest(dataForm));
+									}}>
+									<FontAwesomeIcon icon={faPlusCircle} className={styles.icon} />
+									Tambah
+								</button>
+								<button
+									className={styles.buttonHapus}
+									type="button"
+									onClick={() => {
+										setDataForm(DEFAULT_LEB_TEST_DATA);
+									}}>
+									<FontAwesomeIcon icon={faTrash} className={styles.icon} />
+									Hapus
+								</button>
+								<button
+									className={styles.buttonCopy}
+									type="button"
+									onClick={() => {
+										const result = displayData(dataForm);
+										navigator.clipboard
+											.writeText(result)
+											.then(() => {
+												toast.success(`Lab ${dataForm.name} berhasil di-copy :))`, {
+													position: toast.POSITION.TOP_CENTER,
+												});
+											})
+											.catch(() => {
+												toast.error(`Belum terkopi :((`, {
+													position: toast.POSITION.TOP_CENTER,
+												});
+											});
+									}}>
+									<FontAwesomeIcon icon={faCopy} className={styles.icon} />
+									Copy
+								</button>
+							</div>
+							{displayHTMLData(dataForm)}
+						</div>
+						<div className={styles.finalResultContainer}>
+							<div className={styles.finalTitleSection}>
+								<span className={styles.titleFinal}>Hasil Akhir</span>
+								<div className={styles.copyAll}>
+									<button
+										className={styles.buttonCopyAll}
+										type="button"
+										onClick={() => {
+											const result = data.value
+												.map((item) => {
+													return displayData(item);
+												})
+												.join('\n');
+											navigator.clipboard
+												.writeText(result)
+												.then(() => {
+													toast.success(`Semuanya berhasil di-copy :))`, {
+														position: toast.POSITION.TOP_CENTER,
+													});
+												})
+												.catch(() => {
+													toast.error(`Belum terkopi :((`, {
+														position: toast.POSITION.TOP_CENTER,
+													});
+												});
+										}}>
+										<FontAwesomeIcon icon={faCopy} className={styles.icon} />
+										Copy Semua
+									</button>
+								</div>
+							</div>
+							<div className={styles.finalResult}>
+								{data.value.length === 0 && (
+									<p className={styles.emptyNote}>Belum ada catatan tersimpan.</p>
+								)}
+								{data.value.map((item, index) => {
+									return (
+										<>
+											{displayHTMLData(item)}
+											{index + 1 != data.value.length && <br></br>}
+										</>
+									);
+								})}
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div className={styles.result}>
-				<div className={styles.resultContainer}>
-					<div className={styles.buttonSection}>
-						<button
-							className={styles.button}
-							onClick={() => {
-								setDataForm(DEFAULT_LEB_TEST_DATA);
-								dispatch(addTest(dataForm));
-							}}>
-							<FontAwesomeIcon icon={faPlusCircle} className={styles.icon} />
-						</button>
-						<button
-							className={styles.buttonHapus}
-							onClick={() => {
-								setDataForm(DEFAULT_LEB_TEST_DATA);
-							}}>
-							<FontAwesomeIcon icon={faTrash} className={styles.icon} />
-						</button>
-						<button
-							className={styles.buttonCopy}
-							onClick={() => {
-								const result = displayData(dataForm);
-								navigator.clipboard
-									.writeText(result)
-									.then(() => {
-										toast.success(`Lab ${dataForm.name} berhasil di-copy :))`, {
-											position: toast.POSITION.TOP_CENTER,
-										});
-									})
-									.catch(() => {
-										toast.error(`Belum terkopi :((`, {
-											position: toast.POSITION.TOP_CENTER,
-										});
-									});
-							}}>
-							<FontAwesomeIcon icon={faCopy} className={styles.icon} />
-						</button>
-					</div>
-					{displayHTMLData(dataForm)}
-				</div>
-				<div className={styles.copyright}>
-					<span>&copy; All rights reserved | Designed with love by DungDung</span>
-				</div>
-			</div>
+			)}
 
 			<ToastContainer />
 		</div>

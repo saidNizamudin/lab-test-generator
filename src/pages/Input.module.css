@@ -1,11 +1,26 @@
 .inputContainer {
 	display: flex;
 	flex-direction: column;
+	width: 100%;
 }
 
 .input {
-	border: 2px solid #82b14c;
-	border-radius: 8px;
-	padding: 1em;
+	width: 100%;
+	border: 1px solid var(--line);
+	border-radius: 12px;
+	padding: 0.85rem 0.95rem;
 	outline: none;
+	background: #fff;
+	color: var(--ink);
+	font-size: 0.95rem;
+	transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input::placeholder {
+	color: #b3aaa0;
+}
+
+.input:focus {
+	border-color: var(--accent);
+	box-shadow: 0 0 0 3px rgba(61, 107, 88, 0.16);
 }
