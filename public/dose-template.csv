@@ -1,0 +1,23 @@
+Code,Name,Description,Type,Formula
+pct,Paracetamol,per kali pemberian,per_kg,10-15mg
+ibu,Ibuprofen,per kali pemberian,per_kg,5-10mg
+amox,Amoxicillin,,per_kg,25mg
+cefa,Cefadroxil,,per_kg,15-25mg
+ceftri,Ceftriaxone,,per_kg,50mg
+ceti,Cetirizine,,"per_kg","2,5-5mg"
+diazepam,Diazepam,,per_kg_max,"0,1-0,4mg max 10mg"
+dompe,Domperidone,,"per_kg","0,2-0,5mg"
+erdostein,Erdosteine,dosis tetap,fixed,300mg
+furosemide,Furosemide,,"per_kg","0,5-1mg"
+fentanil,Fentanyl,,per_kg,1-2mcg
+ketokonazole,Ketoconazole,,per_kg,5mg
+ketorolac,Ketorolac,,"per_kg","0,2mg"
+loperamide,Loperamide,,"per_kg","0,05-0,1mg"
+methylpred,Methylprednisolone,,"per_kg","0,5-1mg"
+ondan,Ondansetron,,"per_kg","0,1mg"
+ome,Omeprazole,,"per_kg","0,4-0,8mg"
+rani,Ranitidine,IV dan oral,route,IV 1mg
+rani,Ranitidine,IV dan oral,route,oral 2-5mg
+salbu,Salbutamol,,"per_kg","0,1-0,15mg"
+vicillin sx,Vicillin SX,dibagi 2 kali,divided,100mg / 2
+gentamicin,Gentamicin,,per_kg,6mg

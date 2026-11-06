@@ -11,17 +11,25 @@ export default function Home() {
 					<p className={styles.kicker}>For health workers</p>
 					<h1 className={styles.homeTitle}>Lab notes, ready to paste.</h1>
 					<p className={styles.homeDescription}>
-						Lab Helper is a small notebook for nurses, doctors, and anyone else writing up labs.
-						Enter the numbers, keep only the tests that were ordered, then copy one clean note into
-						the chart.
+						A small notebook for nurses, doctors, and anyone else on the ward. Write up the labs
+						that were ordered, or work out a dose from the patient’s weight.
 					</p>
-					<button
-						className={styles.homeButton}
-						onClick={() => {
-							navigate('/mapping');
-						}}>
-						Start mapping
-					</button>
+					<div className={styles.actions}>
+						<button
+							className={styles.homeButton}
+							onClick={() => {
+								navigate('/mapping');
+							}}>
+							Write a lab note
+						</button>
+						<button
+							className={styles.homeButton}
+							onClick={() => {
+								navigate('/dose');
+							}}>
+							Calculate a dose
+						</button>
+					</div>
 				</div>
 				<div className={styles.markWrap} aria-hidden="true">
 					<img src="/mark.svg" alt="" className={styles.logo} />

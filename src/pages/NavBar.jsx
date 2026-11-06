@@ -4,6 +4,7 @@ import styles from './NavBar.module.css';
 const links = [
 	{ to: '/', label: 'Home', end: true },
 	{ to: '/mapping', label: 'Mapping' },
+	{ to: '/dose', label: 'Dosis' },
 ];
 
 export default function NavBar() {

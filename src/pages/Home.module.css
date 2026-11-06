@@ -49,21 +49,42 @@
 	line-height: 1.65;
 }
 
-.homeButton {
+.actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.65rem;
 	margin-top: 1.6rem;
-	background: var(--accent);
-	color: #fffcf8;
-	border: none;
+}
+
+.homeButton,
+.homeButtonSecondary {
 	border-radius: 999px;
 	padding: 0.85rem 1.35rem;
 	font-size: 0.95rem;
 	font-weight: 500;
 	cursor: pointer;
-	transition: background 0.2s ease;
+	transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.homeButton {
+	background: var(--accent);
+	color: #fffcf8;
+	border: none;
 }
 
 .homeButton:hover {
 	background: var(--accent-deep);
+}
+
+.homeButtonSecondary {
+	background: transparent;
+	color: var(--ink);
+	border: 1px solid var(--line);
+}
+
+.homeButtonSecondary:hover {
+	border-color: #cfc6bb;
+	background: rgba(44, 40, 36, 0.04);
 }
 
 .markWrap {
@@ -100,7 +121,13 @@
 		font-size: 1rem;
 	}
 
-	.homeButton {
+	.actions {
+		width: 100%;
+		flex-direction: column;
+	}
+
+	.homeButton,
+	.homeButtonSecondary {
 		width: 100%;
 		text-align: center;
 	}
