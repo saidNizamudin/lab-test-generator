@@ -12,7 +12,7 @@ export default function NavBar() {
 		<header className={styles.navContainer}>
 			<NavLink to="/" className={styles.brand} end>
 				<img src="/mark.svg" alt="" className={styles.navLogo} />
-				<span className={styles.brandName}>Lab Helper</span>
+				<span className={styles.brandName}>Doc Helper</span>
 			</NavLink>
 			<nav className={styles.navItemContainer}>
 				{links.map((link) => (
